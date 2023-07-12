@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+    <title>Database management</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="blocks/navbar :: navbar"></div>
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis">Database management tools</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Here you can upload file with food content tables to your database, or clear all data from
+            it.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <form action="/database/upload" method="post">
+                <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Upload data</button>
+            </form>
+            <form action="/database/clear" method="post">
+                <button type="submit" class="btn btn-danger btn-lg px-4 gap-3">Delete all products</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:insert="blocks/footer :: footer"></div>
+
+
+</body>
+</html>

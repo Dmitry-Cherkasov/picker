@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+    <title>Recipes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="blocks/navbar :: navbar"></div>
+
+<div class="container alert alert-info mt-5">
+<h3 th:text="${recipe.name}"></h3>
+<p th:text="${recipe.anons}"/>
+<p th:text=" ${recipe.content}"/>
+<h6>Macros content and calories in 100g of dish:</h6>
+<div class="container-sm mt-2 alert alert-info mt-2">
+    <div class="row">
+        <div class="col-sm-3 alert alert-light"><b>Proteins</b></div>
+            <div class="col-sm-3 alert alert-light"><b>Fats</b></div>
+            <div class="col-sm-3 alert alert-light"><b>Carbs</b></div>
+            <div class="col-sm-3 alert alert-light"><b>Calories</b></div>
+        </div>
+        <div class="row">
+            <div th:text="${prots} + ' g.'" class="col-sm-3 alert alert-light"></div>
+            <div th:text="${fats} + ' g.'" class="col-sm-3 alert alert-light"></div>
+            <div th:text="${carbs} + ' g.'" class="col-sm-3 alert alert-light"></div>
+            <div th:text="${cals}" class="col-sm-3 alert alert-light"></div>
+        </div>
+    </div>
+    <a th:href="@{'/recipes/recipe/' + ${recipe.id} + '/delete'}" class="btn btn-warning btn-sm">Delete</a>
+</div>
+
+<div th:insert="blocks/footer :: footer"></div>
+
+
+</body>
+</html>
