@@ -2,17 +2,22 @@
     <nav class="py-2 bg-body-tertiary border-bottom">
         <div class="container d-flex flex-wrap">
             <ul class="nav me-auto">
-                <li class="nav-item"><a href="/" class="nav-link link-body-emphasis px-2 active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="/list" class="nav-link link-body-emphasis px-2">List products</a></li>
-                <li class="nav-item"><a href="/add-product" class="nav-link link-body-emphasis px-2">Add product</a></li>
-                <li class="nav-item"><a href="/mix" class="nav-link link-body-emphasis px-2">Mix</a></li>
-                <li class="nav-item"><a href="/recipes" class="nav-link link-body-emphasis px-2">Recipes</a></li>
-                <li class="nav-item"><a href="/database" class="nav-link link-body-emphasis px-2">Database</a></li>
+                <li class="nav-item"><a href="/" th:text="#{navbar.home}" class="nav-link link-body-emphasis px-2 active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="/list" th:text="#{navbar.list}"  class="nav-link link-body-emphasis px-2">List products</a></li>
+                <li class="nav-item"><a href="/add-product" th:text="#{navbar.add_product}" class="nav-link link-body-emphasis px-2">Add product</a></li>
+                <li class="nav-item"><a href="/mix" th:text="#{navbar.mix}" class="nav-link link-body-emphasis px-2">Mix</a></li>
+                <li class="nav-item"><a href="/recipes" th:text="#{navbar.recipes}" class="nav-link link-body-emphasis px-2">Recipes</a></li>
+                <li class="nav-item"><a href="/database" th:text="#{navbar.database}" class="nav-link link-body-emphasis px-2">Database</a></li>
             </ul>
             <ul class="nav">
-                <li class="nav-item"><a href="/login" class="nav-link link-body-emphasis px-2">Login</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Sign up</a></li>
+                <li class="nav-item"><a href="/login" th:text="#{navbar.login}" class="nav-link link-body-emphasis px-2">Login</a></li>
+                <li class="nav-item"><a href="#" th:text="#{navbar.sign_up}" class="nav-link link-body-emphasis px-2">Sign up</a></li>
             </ul>
+
+            <div class="header_lang">
+                <button onclick="window.location.href='http://localhost:8080/?language=ua'" class="btn btn-sm btn-warning" th:text="#{navbar.lang.ua}">UA</button>
+                <span><button onclick="window.location.href='http://localhost:8080/?language=en'" class="btn btn-sm btn-warning" th:text="#{navbar.lang.eng}">ENG</button></span>
+            </div>
         </div>
     </nav>
 </div>

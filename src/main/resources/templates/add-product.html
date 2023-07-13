@@ -9,32 +9,40 @@
 <div th:insert="blocks/navbar :: navbar"></div>
 
 <div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold text-body-emphasis">Add new product</h1>
+    <h1 class="display-5 fw-bold text-body-emphasis" th:text="#{add_prod.title}">Add new product</h1>
     <div class="col-lg-6 mx-auto">
         <form action="/add-product/add" method="post">
             <div class="form-floating mt-1">
-                <input type="text" id="name" name="name" placeholder="Enter product name" class="form-control"><br>
-                <label for="name">Enter product name</label>
+                <input type="text" id="name" name="name" th:placeholder="#{add_prod.form.name}"
+                       class="form-control"><br>
+                <label for="name" th:text="#{add_prod.form.name}">Enter product name</label>
             </div>
+
             <div class="form-floating">
-                <input type="text" name="prots" placeholder="Enter Proteins value" class="form-control"><br>
-                <label for="name">Proteins value</label>
+                <input type="text" name="prots" th:placeholder="#{add_prod.form.prots}" class="form-control"><br>
+                <label for="name" th:text="#{add_prod.form.prots}">Proteins value</label>
+            </div>
 
                 <div class="form-floating">
-                    <input type="text" name="fats" placeholder="Enter Fats value" class="form-control"><br>
-                    <label for="name">Fats value</label>
+                    <input type="text" name="fats" th:placeholder="#{add_prod.form.fats}" class="form-control"><br>
+                    <label for="name" th:text="#{add_prod.form.fats}">Fats value</label>
+                </div>
 
                     <div class="form-floating">
-                        <input type="text" name="carbs" placeholder="Enter Carbs value" class="form-control"><br>
-                        <label for="name">Enter Carbs value</label>
-
+                        <input type="text" name="carbs" th:placeholder="#{add_prod.form.carbs}"
+                               class="form-control"><br>
+                        <label for="name" th:text="#{add_prod.form.carbs}">Carbs value</label>
                     </div>
+
                     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <button type="submit" class="btn btn-success btn-lg px-4 gap-3">Add product</button>
+                        <button type="submit" class="btn btn-success btn-lg px-4 gap-3"
+                                th:text="#{add_prod.button.add}">Add product
+                        </button>
                     </div>
         </form>
     </div>
 </div>
+
 <div th:insert="blocks/footer :: footer"></div>
 
 

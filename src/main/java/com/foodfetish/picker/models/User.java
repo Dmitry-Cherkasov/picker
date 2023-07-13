@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 
 import java.util.Objects;
 
-@Entity
+//@Entity
 public class User {
 
     @Id
