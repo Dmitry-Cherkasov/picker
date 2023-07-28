@@ -13,10 +13,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
     private Long password;
+    private int acessLevel;
 
-    public User(Long id) {
+    public User(){
 
     }
 
@@ -27,10 +29,6 @@ public class User {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -47,6 +45,14 @@ public class User {
 
     public void setPassword(Long password) {
         this.password = password;
+    }
+
+    public int getAcessLevel() {
+        return acessLevel;
+    }
+
+    public void setAcessLevel(int acessLevel) {
+        this.acessLevel = acessLevel;
     }
 
     @Override

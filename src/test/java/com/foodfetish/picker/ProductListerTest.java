@@ -1,7 +1,10 @@
 package com.foodfetish.picker;
 
 import com.foodfetish.picker.models.FoodProduct;
+import com.foodfetish.picker.utils.ContentJsonParser;
 import com.foodfetish.picker.utils.ProductLister;
+import lombok.Value;
+import org.apache.commons.collections4.map.LinkedMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +12,10 @@ import java.util.Locale;
 
 public class ProductListerTest {
 
+
+
     public static void main(String[] args) {
+
         Locale.setDefault(new Locale("uk_UA"));
         List<String> input = new ProductLister().getList();
         List<FoodProduct> list = new ArrayList<>();
@@ -23,5 +29,6 @@ public class ProductListerTest {
                 list.add(el);
         });
     }
+
 
 }

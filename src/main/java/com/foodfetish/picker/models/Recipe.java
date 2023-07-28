@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.io.Serializable;
-import java.util.TreeMap;
+import java.util.function.Function;
 
 @Entity
 public class Recipe implements Serializable {
@@ -17,7 +17,7 @@ public class Recipe implements Serializable {
 
     private String name;
     private String anons;
-    private String content;
+    private String contentMap;
     private int totalWeight=0;
     private int calories;
     private double prots;
@@ -29,7 +29,6 @@ public class Recipe implements Serializable {
 
     public Recipe(String name){
         this.name = name;
-        this.anons = "Currently empty";
     }
 
     public Recipe(String name, String description ){
@@ -39,18 +38,12 @@ public class Recipe implements Serializable {
 
 
     public void addComponent(FoodProduct item, Integer weight){
+        Function<Double,Double> round = aDouble -> Math.round(aDouble*100.0)/100.0;
         totalWeight += weight;
-        prots +=item.getProts()*weight/100;
-        fats +=item.getFats()*weight/100;
-        carbs +=item.getCarbs()*weight/100;
-        calories = (int) (prots * 4.1 + fats * 9.3 + carbs * 4.1);
+        prots +=round.apply(item.getProts()*weight*0.01);
+        fats +=round.apply(item.getFats()*weight*0.01);
+        carbs +=round.apply(item.getCarbs()*weight*0.01);
 
-        if (content == null){
-            content = item.getName() + " : " + weight + "\n";
-        }
-        else {
-            content = String.join(", ", content, item.getName() + " : " + weight + "\n");
-        }
     }
 
     public Long getId() { return id; }
@@ -63,6 +56,9 @@ public class Recipe implements Serializable {
         return anons;
     }
 
+
+    public void setId(long id) { this.id = id; }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -71,17 +67,21 @@ public class Recipe implements Serializable {
         this.anons = anons;
     }
 
-    public String getContent(){
-        return  "Content: " + content;
-    }
-
-
     public int getCalories() {
         return calories;
     }
 
     public int countCalories() {
-        return (int) (prots*4.1+fats*9.3+carbs*9.3);
+        return (int) (prots*4.1+fats*9.3+carbs*4.1);
+    }
+
+
+    public String getContentMap() {
+        return contentMap;
+    }
+
+    public void setContentMap(String contentMap) {
+        this.contentMap = contentMap;
     }
 
     public void setCalories(int calories) {
@@ -116,9 +116,14 @@ public class Recipe implements Serializable {
         this.carbs = carbs;
     }
 
-    public String toString(){
-        StringBuilder output = new StringBuilder();
-
-        return output.toString();
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "name='" + name + '\'' +
+                ", calories=" + calories +
+                ", prots=" + prots +
+                ", fats=" + fats +
+                ", carbs=" + carbs +
+                '}';
     }
 }

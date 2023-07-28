@@ -9,25 +9,32 @@
 <div th:insert="blocks/navbar :: navbar"></div>
 
 <div class="container alert alert-info mt-5">
-<h3 th:text="${recipe.name}"></h3>
-<p th:text="${recipe.anons}"/>
-<p th:text=" ${recipe.content}"/>
-<h6>Macros content and calories in 100g of dish:</h6>
-<div class="container-sm mt-2 alert alert-info mt-2">
-    <div class="row">
-        <div class="col-sm-3 alert alert-light"><b>Proteins</b></div>
-            <div class="col-sm-3 alert alert-light"><b>Fats</b></div>
-            <div class="col-sm-3 alert alert-light"><b>Carbs</b></div>
-            <div class="col-sm-3 alert alert-light"><b>Calories</b></div>
+    <h3 th:text="${recipe.name}"></h3>
+    <p th:text="${recipe.anons}"/>
+    <p th:text="#{recipes.content} + '  ' + ${content}"/>
+    <h6 th:text="#{recipe.details.macros}">Macros content and calories in 100g of dish:</h6>
+    <div class="container-sm mt-2 alert alert-info mt-2">
+        <div class="row">
+            <div align="center" class="col-sm-2 alert alert-light mr-2"><b th:text="#{recipe.details.proteins}">Proteins</b></div>
+            <div align="center" class="col-sm-2 alert alert-light mr-2"><b th:text="#{recipe.details.fats}">Fats</b></div>
+            <div align="center" class="col-sm-2 alert alert-light mr-2"><b th:text="#{recipe.details.carbs}">Carbs</b></div>
+            <div align="center" class="col-sm-2 alert alert-light mr-2"><b th:text="#{recipe.details.calories}">Calories</b>
+            </div>
         </div>
         <div class="row">
-            <div th:text="${prots} + ' g.'" class="col-sm-3 alert alert-light"></div>
-            <div th:text="${fats} + ' g.'" class="col-sm-3 alert alert-light"></div>
-            <div th:text="${carbs} + ' g.'" class="col-sm-3 alert alert-light"></div>
-            <div th:text="${cals}" class="col-sm-3 alert alert-light"></div>
+            <div th:text="${prots} + ' ' + #{recipe.details.unit}" align="center"
+                 class="col-sm-2 alert alert-light mr-1"></div>
+            <div th:text="${fats} + ' ' + #{recipe.details.unit}" align="center"
+                 class="col-sm-2 alert alert-light mr-1"></div>
+            <div th:text="${carbs} + ' ' + #{recipe.details.unit}" align="center"
+                 class="col-sm-2 alert alert-light mr-1"></div>
+            <div th:text="${cals}" align="center" class="col-sm-2 alert alert-light mr-1"></div>
         </div>
     </div>
-    <a th:href="@{'/recipes/recipe/' + ${recipe.id} + '/delete'}" class="btn btn-warning btn-sm">Delete</a>
+    <a th:href="@{'/recipes/recipe/' + ${recipe.id} + '/edit'}" class="btn btn-warning btn-sm"
+       th:text="#{recipe.details.button.edit}">Edit</a>
+    <a th:href="@{'/recipes/recipe/' + ${recipe.id} + '/delete'}" class="btn btn-danger btn-sm"
+       th:text="#{recipe.details.button.delete}">Delete</a>
 </div>
 
 <div th:insert="blocks/footer :: footer"></div>

@@ -12,58 +12,28 @@
 <div th:insert="blocks/navbar :: navbar"></div>
 
 <div class="px-1 py-1 my-1 text-center">
-    <h3 class="display-5 fw-bold text-body-emphasis">Form new recipe</h3>
+    <h3 class="display-5 fw-bold text-body-emphasis" th:text="#{recipe.compose.title}">Form new recipe</h3>
 </div>
 
 <div class="container mt-2">
     <div class="row g-5">
-        <div class="col-md-5 col-lg-4 order-md-last">
-            <h5 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-primary">Available products:</span>
-            </h5>
 
-            <div class="overflow-auto" style="max-height: 350px;">
-                <div class="list-group-item d-flex justify-content-between lh-sm">
-                    <div class="col-md-8">
-                        <h6>Product name</h6>
-                    </div>
-                    <span class="col-md-2">
-                        <h6>Cals</h6>
-                        </span>
-                </div >
-                <div th:each="el : ${products}" class="list-group-item d-flex justify-content-between lh-sm mt-1">
-                    <div>
-                        <a th:href="@{'/recipes/compose/add/'+${el.name}}" th:text="${el.getName()}" class="btn btn-sm btn-light"></a>
-                    </div>
-                    <span class="col-md-2">
-                        <text th:text="${el.calories}" class="my-0"></text>
-                    </span>
-                </div>
-            </div>
-
-            <form class="card p-2" action="/recipes/compose" method="post">
-                <div class="input-group">
-                    <input type="text" class="form-control"  name="substring" placeholder="Find product" maxlength="32">
-                    <button type="submit" class="btn btn-secondary">Search</button>
-                </div>
-            </form>
-        </div>
         <div class="col-md-7 col-lg-8">
-            <h4 class="mb-3">Some text</h4>
+            <h4 class="mb-3" th:text="#{recipe.compose.text}">Some text</h4>
             <form action="/recipes/compose/add-ingredient" method="post" class="needs-validation" novalidate="">
                 <div class="row g-3">
                     <div class="col-sm-6">
-                        <label for="name" class="form-label">Product name</label>
-                        <input type="text" class="form-control" id="name" th:value="${picked}" name="name" placeholder="Enter food product"
-                               value="" required="" maxlength="32" >
+                        <label for="name" class="form-label" th:text="#{recipe.compose.name-input.form.label}">Product name</label>
+                        <input type="text" class="form-control" id="name" th:value="${picked}" name="name" th:placeholder="#{recipe.compose.name-input.form.pholder}"
+                               value="" required="" maxlength="55" >
                         <div class="invalid-feedback">
                             Valid food product is required.
                         </div>
                     </div>
 
                     <div class="col-sm-6">
-                        <label for="weight" class="form-label">Weight</label>
-                        <input type="number" class="form-control" id="weight" name="weight" placeholder="Enter weight g."
+                        <label for="weight" class="form-label" th:text="#{recipe.compose.weight-input.form.label}">Weight</label>
+                        <input type="number" class="form-control" id="weight" name="weight" th:placeholder="#{recipe.compose.weight-input.form.pholder}"
                                value="" required="" min="1" max="4" >
                         <div class="invalid-feedback">
                             Valid weight is required.
@@ -74,26 +44,28 @@
 
                 <hr class="my-4">
 
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Add to new recipe</button>
+                <button class="w-100 btn btn-primary btn-lg" type="submit" th:text="#{recipe.compose.button.add}">Add to new recipe</button>
             </form>
 
             <div class="my-4 mt-5">
-                <h5>Added to recipe:</h5>
+                <h5 th:text="#{recipe.compose.content.title}">Added to recipe:</h5>
                 <div class="alert alert-light mt-2">
-                    <h6 th:text="${recipe}"/>
-                    <span>
-                        <form action="/recipes/compose/del-last-ingredient">
-                            <button type="submit" class="btn btn-warning btn-sm px-4 gap-3">Delete last item</button>
-                        </form>
-                    </span>
+                    <h6 th:text="#{recipe.compose.content.cont}">Content:</h6>
+
+                    <h6 th:text="${recipe}"/></h6>
+                    <a href="/recipes/compose/del-last-ingredient" type="submit" class="btn btn-warning btn-sm px-4 gap-3" th:text="#{recipe.compose.button.delete-last}">Delete last item</a>
+                    <a href="/recipes/compose/clear-all" type="submit" class="btn btn-danger btn-sm px-4 gap-3" th:text="#{recipe.compose.button.clear-all}">Clear all</a>
                 </div>
                 <div class="d-grid gap-1 d-sm-flex justify-content-sm-center">
-                    <form action="/recipes/create">
-                        <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Create new recipe</button>
-                    </form>
+                    <a href="/recipes/create" type="submit" class="btn btn-primary btn-lg px-4 gap-3" th:text="#{recipe.compose.button.create}">Create new recipe</a>
                 </div>
             </div>
         </div>
+
+        <div class="col-md-5 col-lg-4 order-md-last">
+            <div th:insert="blocks/product-search :: product-search"></div>
+        </div>
+
     </div>
 </div>
 

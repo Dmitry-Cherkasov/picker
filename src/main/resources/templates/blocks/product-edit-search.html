@@ -1,0 +1,36 @@
+<div th:fragment="product-edit-search">
+
+        <h5 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary" th:text="#{recipe.compose.find.title}">Available products:</span>
+        </h5>
+
+        <div class="overflow-auto" style="max-height: 350px;">
+            <div class="list-group-item d-flex justify-content-between lh-sm">
+                <div class="col-md-10">
+                    <h6 th:text="#{recipe.compose.find.head.name}">Product name</h6>
+                </div>
+                <span class="col-md-2">
+                        <h6 th:text="#{recipe.compose.find.head.cals}">Cals</h6>
+                        </span>
+            </div>
+
+            <div th:each="el : ${products}" class="list-group-item d-flex justify-content-between lh-sm mt-1">
+                <div>
+                    <a th:href="@{'/recipes/recipe/' + ${recipe.id} + '/edit/pick/' + ${el.id}}" th:text="${el.getName()}"
+                       class="btn btn-sm btn-light"></a>
+                </div>
+                <span class="col-md-2">
+                        <text th:text="${el.calories}" class="my-0"></text>
+                    </span>
+            </div>
+        </div>
+
+        <form class="card p-2" th:action="'/recipes/recipe/' + ${recipe.id} + '/edit'" method="post">
+            <div class="input-group">
+                <input type="text" class="form-control" name="substring"
+                       th:placeholder="#{recipe.compose.find.form.pholder}" maxlength="32">
+                <button type="submit" class="btn btn-secondary" th:text="#{recipe.compose.button.search}">Search
+                </button>
+            </div>
+        </form>
+</div>
